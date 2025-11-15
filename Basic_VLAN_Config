@@ -1,0 +1,29 @@
+! --- VLAN CONFIGURATION DEMO ---
+! Demonstrates network segmentation for security and traffic control.
+
+enable
+configure terminal
+
+! 1. Create VLAN 10 (Sales Department)
+vlan 10
+ name sales
+! 2. Create VLAN 20 (Marketing Department)
+vlan 20
+ name marketing
+exit
+
+! 3. Assign Interface f0/1 to Sales (VLAN 10)
+! This ensures only Sales devices can access this port.
+interface FastEthernet0/1
+ switchport mode access
+ switchport access vlan 10
+ exit
+
+! 4. Assign Interface f0/2 to Marketing (VLAN 20)
+! This logically separates the two departments' network traffic.
+interface FastEthernet0/2
+ switchport mode access
+ switchport access vlan 20
+ exit
+
+! --- END CONFIGURATION ---
